@@ -11,18 +11,22 @@
 # read.csv <-
 
 
-# Figure 1. ---------------------------------------------------------------
+# Figure 1. Site Map ------------------------------------------------------
 
 
-# Figure 2. ---------------------------------------------------------------
+
+# Figure 2. Abundance of kelp/turf cover as a function of wave exposure. ---------------------------------------------------------------
 
 
-# Figure 3. ---------------------------------------------------------------
+# Figure 3. Abundance of kelp/turf cover as a function of temperature.---------------------------------------------------------------
 
 
-# Figure 4. ---------------------------------------------------------------
+# Figure 4. Species richness of kelp/turf cover as a function of wave exposure.---------------------------------------------------------------
 
 
-# Figure 5. ---------------------------------------------------------------
+# Figure 5. Species richness of kelp/turf cover as a function of temperature.---------------------------------------------------------------
+
+
+# Generalized liner effects model for the interaction between temp --------
 
 
