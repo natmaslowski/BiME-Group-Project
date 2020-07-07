@@ -1,5 +1,3 @@
-#STARTING FRESH. Lets see if this works.
-
-#jess new line!
-
-#I think we are finally getting the hang of this!
+#BiME Kelp vs Turf Working Script. 
+#Authors: Natalie M. and Jess K.
+#Date of creation: July 6, 2020
