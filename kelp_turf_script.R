@@ -27,6 +27,6 @@
 # Figure 5. Species richness of kelp/turf cover as a function of temperature.---------------
 
 
-# Generalized liner effects model for the interaction between temp -------------------------
+# Figure 6. Generalized liner effects model for the interaction between temp ---------------
 
 
