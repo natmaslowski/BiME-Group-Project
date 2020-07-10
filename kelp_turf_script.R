@@ -32,9 +32,6 @@ kelp_theme <- theme_classic() +
 kelpdata <- read.csv("kelp_turf_datajk1.csv")
 summary(kelpdata)
 
-#plotting both kelp and turf cover vs. max air temp
-air_temp_both <- ggplot(data=kelpdata, aes(x=max_air_temp, y=kelp_cover)) +geom_point()+geom_point(aes(x=max_air_temp, y=turf_cover), color="red") + labs(x="Maximum Air Temperature (ºC)", y="Percent Cover")+ kelp_theme
-air_temp_both
 
 #plotting just kelp cover vs. max air temp
 air_temp_kelp <- ggplot(data=kelpdata, aes(x=max_air_temp, y=kelp_cover)) +geom_point()+geom_smooth(method=lm) + labs(x="Maximum Air Temperature (ºC)", y="Percent Kelp Cover")+ kelp_theme
@@ -83,5 +80,3 @@ ggplot
 
 # Figure 6. Generalized liner effects model for the interaction between temp ---------------
 
-
->>>>>>> 0ece3ba5d93f5b3f5f5dcd90b6b257b9c6710380
