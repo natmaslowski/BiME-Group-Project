@@ -29,7 +29,7 @@ kelp_theme <- theme_classic() +
     strip.background = element_blank(),
     strip.text.y = element_blank())
 
-kelpdata <- read.csv("kelp_turf_data.csv")
+kelpdata <- read.csv("kelp_turf_datajk1.csv")
 summary(kelpdata)
 
 #plotting both kelp and turf cover vs. max air temp
@@ -43,6 +43,15 @@ air_temp_kelp
 #plotting just turf cover vs. max air temp
 air_temp_turf <- ggplot(data=kelpdata, aes(x=max_air_temp, y=turf_cover)) +geom_point()+geom_smooth(method=lm) + labs(x="Maximum Air Temperature (ºC)", y="Percent Turf Cover")+ kelp_theme
 air_temp_turf
+
+#plotting average sst vs. kelp cover 
+water_temp_kelp <- ggplot(data=kelpdata, aes(x=avg_sst, y=kelp_cover)) +geom_point()+geom_smooth(method=lm) + labs(x="Average Sea Surface Temperature (ºC)", y="Percent Kelp Cover")+ kelp_theme
+water_temp_kelp
+
+#plotting average sst vs. turf cover 
+water_temp_turf <- ggplot(data=kelpdata, aes(x=avg_sst, y=turf_cover)) +geom_point()+geom_smooth(method=lm, se=FALSE, color="black") + labs(x="Average Sea Surface Temperature (ºC)", y="Percent Turf Cover")+ kelp_theme
+water_temp_turf
+
 
 #=======
 =======
