@@ -4,4 +4,32 @@
 
 #Space for loading packages. (Jess which ones do you think we will need? dplyr, stringr, ggplot2?)
 
-# read.csv <-
+library(ggplot2)
+library(dplyr)
+
+kelp_theme <- theme_classic() +
+  theme(
+    axis.title = element_text(size = 20, face="bold"),
+    axis.text = element_text(size = 20, colour = "black"),
+    axis.text.x = element_text(margin = margin(t = 10, unit = "pt")),
+    legend.text=element_text(size=20), 
+    legend.title=element_text(size=20, face="bold"), 
+    legend.position=c(0.85,0.9),
+    legend.background = element_blank(), 
+    legend.key = element_blank(),
+    text=element_text(family="Times New Roman"),
+    panel.grid.major = element_blank(), 
+    panel.grid.minor = element_blank(), 
+    panel.background = element_blank(), 
+    axis.line= element_line(colour = "black"),
+    strip.background = element_blank(),
+    strip.text.y = element_blank())
+
+kelpdata <- read.csv("kelp_turf_data.csv")
+summary(kelpdata)
+
+#plotting both kelp and turf cover vs. max air temp
+air_temp_both <- ggplot(data=kelpdata, aes(x=max_air_temp, y=kelp_cover)) +geom_point()+geom_point(aes(x=max_air_temp, y=turf_cover), color="red") + labs(x="Maximum Air Temperature (ºC)", y="Percent Cover")+ kelp_theme
+air_temp_both
+
+#plotting just kelp cover vs. max air temp
