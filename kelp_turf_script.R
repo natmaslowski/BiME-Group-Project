@@ -29,7 +29,7 @@ kelp_theme <- theme_classic() +
     strip.background = element_blank(),
     strip.text.y = element_blank())
 
-kelpdata <- read.csv("kelp_turf_datajk1.csv")
+kelpdata <- read.csv("kelp_turf_data_new.csv")
 summary(kelpdata)
 
 
