@@ -7,6 +7,7 @@
 #Space for loading packages. (Jess which ones do you think we will need? dplyr, stringr, ggplot2?)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 library(ggplot2)
 library(dplyr)
 
@@ -44,20 +45,26 @@ air_temp_turf <- ggplot(data=kelpdata, aes(x=max_air_temp, y=turf_cover)) +geom_
 air_temp_turf
 
 #=======
+=======
+library(ggplot2)
+library(stringr)
+library(tidyr)
+library(dplyr)
+>>>>>>> adda69f15c5d2deda754c1b9f6d564e355866125
 
 # Data Wrangling ---------------------------------------------------------------------------
-# read.csv <-
+kelp_data <- read.csv("kelp_turf_data.csv")
 
 
 # Figure 1. Site Map -----------------------------------------------------------------------
 
-
+#See Nik's image 
 
 # Figure 2. Abundance of kelp/turf cover as a function of wave exposure. -------------------
-
+# started on this, but realized we don't have wave exposure data yet. ggplot(kelp_data, aes(x=)
 
 # Figure 3. Abundance of kelp/turf cover as a function of temperature.----------------------
-
+ggplot
 
 # Figure 4. Species richness of kelp/turf cover as a function of wave exposure.-------------
 
