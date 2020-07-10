@@ -2,8 +2,11 @@
 #Authors: Natalie M. and Jess K.
 #Date of creation: July 6, 2020
 
+
+# Loading of packages ----------------------------------------------------------------------
 #Space for loading packages. (Jess which ones do you think we will need? dplyr, stringr, ggplot2?)
 
+<<<<<<< HEAD
 library(ggplot2)
 library(dplyr)
 
@@ -33,3 +36,36 @@ air_temp_both <- ggplot(data=kelpdata, aes(x=max_air_temp, y=kelp_cover)) +geom_
 air_temp_both
 
 #plotting just kelp cover vs. max air temp
+air_temp_kelp <- ggplot(data=kelpdata, aes(x=max_air_temp, y=kelp_cover)) +geom_point()+geom_smooth(method=lm) + labs(x="Maximum Air Temperature (ºC)", y="Percent Kelp Cover")+ kelp_theme
+air_temp_kelp
+
+#plotting just turf cover vs. max air temp
+air_temp_turf <- ggplot(data=kelpdata, aes(x=max_air_temp, y=turf_cover)) +geom_point()+geom_smooth(method=lm) + labs(x="Maximum Air Temperature (ºC)", y="Percent Turf Cover")+ kelp_theme
+air_temp_turf
+
+#=======
+
+# Data Wrangling ---------------------------------------------------------------------------
+# read.csv <-
+
+
+# Figure 1. Site Map -----------------------------------------------------------------------
+
+
+
+# Figure 2. Abundance of kelp/turf cover as a function of wave exposure. -------------------
+
+
+# Figure 3. Abundance of kelp/turf cover as a function of temperature.----------------------
+
+
+# Figure 4. Species richness of kelp/turf cover as a function of wave exposure.-------------
+
+
+# Figure 5. Species richness of kelp/turf cover as a function of temperature.---------------
+
+
+# Figure 6. Generalized liner effects model for the interaction between temp ---------------
+
+
+>>>>>>> 0ece3ba5d93f5b3f5f5dcd90b6b257b9c6710380
