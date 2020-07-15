@@ -6,8 +6,6 @@
 # Loading of packages ----------------------------------------------------------------------
 #Space for loading packages. (Jess which ones do you think we will need? dplyr, stringr, ggplot2?)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 library(ggplot2)
 library(dplyr)
 
@@ -29,54 +27,92 @@ kelp_theme <- theme_classic() +
     strip.background = element_blank(),
     strip.text.y = element_blank())
 
-kelpdata <- read.csv("kelp_turf_data_new.csv")
-summary(kelpdata)
-
-
-#plotting just kelp cover vs. max air temp
-air_temp_kelp <- ggplot(data=kelpdata, aes(x=max_air_temp, y=kelp_cover)) +geom_point()+geom_smooth(method=lm) + labs(x="Maximum Air Temperature (ºC)", y="Percent Kelp Cover")+ kelp_theme
-air_temp_kelp
-
-#plotting just turf cover vs. max air temp
-air_temp_turf <- ggplot(data=kelpdata, aes(x=max_air_temp, y=turf_cover)) +geom_point()+geom_smooth(method=lm) + labs(x="Maximum Air Temperature (ºC)", y="Percent Turf Cover")+ kelp_theme
-air_temp_turf
-
-#plotting average sst vs. kelp cover 
-water_temp_kelp <- ggplot(data=kelpdata, aes(x=avg_sst, y=kelp_cover)) +geom_point()+geom_smooth(method=lm) + labs(x="Average Sea Surface Temperature (ºC)", y="Percent Kelp Cover")+ kelp_theme
-water_temp_kelp
-
-#plotting average sst vs. turf cover 
-water_temp_turf <- ggplot(data=kelpdata, aes(x=avg_sst, y=turf_cover)) +geom_point()+geom_smooth(method=lm, se=FALSE, color="black") + labs(x="Average Sea Surface Temperature (ºC)", y="Percent Turf Cover")+ kelp_theme
-water_temp_turf
-
 
 #=======
-=======
+#=======
 library(ggplot2)
 library(stringr)
 library(tidyr)
 library(dplyr)
->>>>>>> adda69f15c5d2deda754c1b9f6d564e355866125
+library(sciplot)
 
 # Data Wrangling ---------------------------------------------------------------------------
-kelp_data <- read.csv("kelp_turf_data.csv")
+kelp_data <- read.csv("kelp_turf_data_new.csv")
+summary(kelp_data)
+View(kelp_data)
+
+#calculating mean % cover across quadrats for each site
+aggregate(kelp_data[, 3:4], list(kelp_data$site_code), mean)
+aggregate(kelp_data[, 3:4], list(kelp_data$site_code), sd)
+
+#calculating mean species richness across quads for each site
+aggregate(kelp_data[, 10:11], list(kelp_data$site_code), mean)
+aggregate(kelp_data[, 10:11], list(kelp_data$site_code), sd)
+
+#FIGURES
+
+#Figure 2a. 
+#plotting just kelp cover vs. max air temp
+air_temp_kelp <- ggplot(data=kelp_data, aes(x=max_air_temp, y=kelp_cover)) +geom_point()+geom_smooth(method=lm, color="black") + labs(x="Maximum Air Temperature (ºC)", y="Percent Kelp Cover")+ kelp_theme
+air_temp_kelp
+
+lineplot.CI(x.factor = max_air_temp, response=kelp_cover, cex=1, pch=c(16,16, 16, 16, 16, 16, 16,16, 16, 16, 16, 16, 16,16, 16, 16, 16, 16, 16,16, 16, 16, 16, 16), xlab="Maximum Air Temperature (ºC)", ylab="Percent Kelp Cover", group=site_code, data=kelp_data, legend=FALSE, x.cont=FALSE)
+axis(1, at=c(15,20,25,30, 35, 40))
 
 
-# Figure 1. Site Map -----------------------------------------------------------------------
+#figure 2b
+#plotting turf cover vs. max air temp
+air_temp_turf <- ggplot(data=kelpdata, aes(x=max_air_temp, y=turf_cover)) +geom_point()+geom_smooth(method=lm, color="black") + labs(x="Maximum Air Temperature (ºC)", y="Percent Turf Cover")+ kelp_theme
+air_temp_turf
 
-#See Nik's image 
+#figure 2c
+#average sst vs. kelp cover 
+water_temp_kelp <- ggplot(data=kelpdata, aes(x=avg_sst, y=kelp_cover)) +geom_point()+geom_smooth(method=lm, color="black") + labs(x="Average Sea Surface Temperature (ºC)", y="Percent Kelp Cover")+ kelp_theme
+water_temp_kelp
 
-# Figure 2. Abundance of kelp/turf cover as a function of wave exposure. -------------------
-# started on this, but realized we don't have wave exposure data yet. ggplot(kelp_data, aes(x=)
+#figure 2d
+#average sst vs. turf cover 
+water_temp_turf <- ggplot(data=kelpdata, aes(x=avg_sst, y=turf_cover)) +geom_point()+geom_smooth(method=lm, color="black") + labs(x="Average Sea Surface Temperature (ºC)", y="Percent Turf Cover")+ kelp_theme
+water_temp_turf
 
-# Figure 3. Abundance of kelp/turf cover as a function of temperature.----------------------
-ggplot
+#test: does %cover correlate with richness?
+kelp.turf <- lm(turf_richness~kelp_richness, data=kelp_data)
+summary(kelp.turf)
 
-# Figure 4. Species richness of kelp/turf cover as a function of wave exposure.-------------
+#another figure
+#kelp cover vs. turf cover
+kelp_v_turf <- ggplot(data=kelp_data, aes(x=kelp_cover, y=kelp_cover))
 
+#STATS: 
+#playing around 
 
-# Figure 5. Species richness of kelp/turf cover as a function of temperature.---------------
+kelp.lm.final <- lm(kelp_cover~max_air_temp*avg_sst*barnacle_height, data=kelp_data)
+summary(kelp.lm.final)
+AIC(kelp.lm.final)
 
+#MINI-TUTORIAL
+#to run linear models use the lm() function
+#ex: lm(response.variable~explanatory.variable1*explanatory.variable2, data=my.data)
+#if you write * it will include the interaction between the explanatory variables and if you write + it WON'T include the interaction terms
+kelp.lm <- lm(kelp_cover~barnacle_height*avg_sst, data=kelp_data)
+kelp.lm.no.interaction <- lm(kelp_cover~barnacle_height+avg_sst, data=kelp_data)
+#this function spits out the results of the linear model (this is where I got the R squared, and also where you get the p-values to tell if the relationship is significant)
+summary(kelp.lm)
+summary(kelp.lm.no.interaction)
+#this is where I got the AIC values
+AIC(kelp.lm)
+#so what I would do is run all possible models including all explanatory variables in all combinations and then ranked them using AIC which is like a score of how good that model is 
+#the model with the LOWEST AIC= the model that BEST explains the response variable 
 
-# Figure 6. Generalized liner effects model for the interaction between temp ---------------
+#I will also send you the excel file where I inputted all of the model terms, AICs and R-squared values so you understand what I mean better 
+#also if i was being a good scientist/R-person I would type each model out individually but I was lazy and just deleted/added in more terms to the same model over and over to get the AICs and R-squared values lol 
 
+#same thing with richness
+kelp.rich <-lm(kelp_richness~barnacle_height, data=kelp_data)
+summary(kelp.rich)
+AIC(kelp.rich)
+
+#same thing with turf 
+turf.lm <- lm(turf_cover~max_air_temp*avg_sst*barnacle_height, data=kelp_data)
+summary(turf.lm)
+AIC(turf.lm)
